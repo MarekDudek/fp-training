@@ -46,4 +46,17 @@ public final class MonoidExamples {
         Set<Character> union = ss.reduce(set(), (a, b) -> Sets.union(a, b));
         assertThat(union, is(set('a', 'b', 'c', 'd', 'e')));
     }
+
+    private static Set<Character> Omega = set(
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+            'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+            's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    );
+
+    @Test
+    public void intersection_of_sets() {
+        Stream<Set<Character>> ss = Stream.of(set('a', 'b', 'c'), set('b', 'c', 'd'), set('c', 'd', 'e'));
+        Set<Character> intersection = ss.reduce(Omega, (a, b) -> Sets.intersection(a, b));
+        assertThat(intersection, is(set('c')));
+    }
 }
