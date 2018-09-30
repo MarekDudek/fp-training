@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static fp.SetHelper.list;
-import static fp.SetHelper.set;
+import static fp.SetHelper.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public final class MonoidExamples {
+public final class MonoidExamplesInJava8Test {
 
     @Test
     public void addition_of_numbers() {
@@ -50,12 +49,6 @@ public final class MonoidExamples {
         Set<Character> union = ss.reduce(Collections.emptySet(), (a, b) -> Sets.union(a, b));
         assertThat(union, is(set('a', 'b', 'c', 'd', 'e')));
     }
-
-    private static Set<Character> Omega = set(
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-            'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-            's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    );
 
     @Test
     public void intersection_of_sets() {
