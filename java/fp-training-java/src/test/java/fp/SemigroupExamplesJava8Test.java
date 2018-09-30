@@ -9,12 +9,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static fp.SetHelper.list;
-import static fp.SetHelper.set;
+import static fp.CollectionsHelper.list;
+import static fp.CollectionsHelper.set;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public final class SemigroupExamplesInJava8Test {
+public final class SemigroupExamplesJava8Test {
 
     @Test
     public void minimum_of_numbers() {

@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static fp.SetHelper.*;
+import static fp.CollectionsHelper.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public final class MonoidExamplesInJava8Test {
+public final class MonoidExamplesJava8Test {
 
     @Test
     public void addition_of_numbers() {

@@ -6,7 +6,7 @@ import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
 
-public final class SetHelper {
+public final class CollectionsHelper {
 
     public static <A> Set<A> set(A... as) {
         return Sets.newHashSet(as);
