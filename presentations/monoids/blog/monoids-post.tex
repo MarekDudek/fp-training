@@ -19,33 +19,58 @@
 
 \subsection{Semigroup}
 
-Semigroup is an algebraic structure consisting of a set together with an associative binary operation.
+    \paragraph{}
+    Semigroup is an algebraic structure consisting of a set together with an associative binary operation.
 
-\begin{equation}
-    (A, \diamond)
-\end{equation}
+    \begin{equation}
+        (A, \diamond)
+    \end{equation}
 
-\begin{equation}
-    a \diamond a = a
-\end{equation}
+    \begin{equation}
+        a \diamond a = a
+    \end{equation}
 
-\begin{equation}
-    x \diamond (y \diamond z) = (x \diamond y) \diamond z
-\end{equation}
+    \begin{equation}
+        x \diamond (y \diamond z) = (x \diamond y) \diamond z
+    \end{equation}
+
+    \paragraph{}
+    Symbol $\diamond$ is often pronounced \textit{append}.
 
 \subsection{Monoid}
 
-Monoid is a semigroup with identity element.
+    \paragraph{}
+    Monoid is a semigroup with identity element.
 
-\begin{equation}
-    a \diamond \emptyset = a
-\end{equation}
+    \begin{equation}
+        a \diamond \emptyset = a
+    \end{equation}
 
-\begin{equation}
-    \emptyset \diamond a = a
-\end{equation}
+    \begin{equation}
+        \emptyset \diamond a = a
+    \end{equation}
 
+    \paragraph{}
+    Symbol $\emptyset$ is often pronounced \textit{empty}.
 
+\subsection{Concatenation}
+
+    \paragraph{}
+    Once we have $\diamond$ operator for two elements we can define concatenation function for multiple elements.
+
+    \begin{equation}
+        concat([a_1, a_2, ..., a_n]) = a_1 \diamond a_2 \diamond ... \diamond a_n
+    \end{equation}
+
+    \begin{equation}
+        concat(as) = fold_{right}(\diamond, \emptyset, as)
+    \end{equation}
+
+    \paragraph{}
+    For monoids concatenation of empty list is by definition equal to $\emptyset$.
+    Semigroups don't have $\emptyset$ so this function is only defined for a non-empty list. 
+
+\section{Simple examples}
 
 
 \newpage
