@@ -70,4 +70,11 @@ public final class MonoidExamples {
         List<Integer> l = ls.reduce(Collections.emptyList(), (a, b) -> ListUtils.union(a, b));
         assertThat(l, is(list(1, 2, 3, 4, 5, 6, 7, 8, 9)));
     }
+
+    @Test
+    public void appending_strings() {
+        Stream<String> ss = Stream.of("abc", "def", "ghi");
+        String s = ss.reduce("", (a, b) -> a + b);
+        assertThat(s, is("abcdefghi"));
+    }
 }
