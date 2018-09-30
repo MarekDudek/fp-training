@@ -1,12 +1,18 @@
 package fp;
 
-import java.util.Set;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
-import static com.google.common.collect.Sets.newHashSet;
+import java.util.List;
+import java.util.Set;
 
 public final class SetHelper {
 
     public static <A> Set<A> set(A... as) {
-        return newHashSet(as);
+        return Sets.newHashSet(as);
+    }
+
+    public static <A> List<A> list(A... as) {
+        return Lists.newArrayList(as);
     }
 }

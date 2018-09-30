@@ -1,13 +1,16 @@
 package fp;
 
 import com.google.common.collect.Sets;
+import org.apache.commons.collections.ListUtils;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static fp.SetHelper.list;
 import static fp.SetHelper.set;
-import static java.util.Collections.emptySet;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -44,7 +47,7 @@ public final class MonoidExamples {
     @Test
     public void union_of_sets() {
         Stream<Set<Character>> ss = Stream.of(set('a', 'b', 'c'), set('b', 'c', 'd'), set('c', 'd', 'e'));
-        Set<Character> union = ss.reduce(emptySet(), (a, b) -> Sets.union(a, b));
+        Set<Character> union = ss.reduce(Collections.emptySet(), (a, b) -> Sets.union(a, b));
         assertThat(union, is(set('a', 'b', 'c', 'd', 'e')));
     }
 
@@ -59,5 +62,12 @@ public final class MonoidExamples {
         Stream<Set<Character>> ss = Stream.of(set('a', 'b', 'c'), set('b', 'c', 'd'), set('c', 'd', 'e'));
         Set<Character> intersection = ss.reduce(Omega, (a, b) -> Sets.intersection(a, b));
         assertThat(intersection, is(set('c')));
+    }
+
+    @Test
+    public void appending_lists() {
+        Stream<List<Integer>> ls = Stream.of(list(1, 2, 3), list(4, 5, 6), list(7, 8, 9));
+        List<Integer> l = ls.reduce(Collections.emptyList(), (a, b) -> ListUtils.union(a, b));
+        assertThat(l, is(list(1, 2, 3, 4, 5, 6, 7, 8, 9)));
     }
 }
