@@ -6,5 +6,4 @@ IFS=$'\n\t'
 DIRNAME=$(dirname "$0")
 
 
-rm -fr ${DIRNAME}/../tmp/*
-
+${DIRNAME}/../presentations/monoids/bin/clean.sh
