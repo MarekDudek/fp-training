@@ -6,4 +6,5 @@ IFS=$'\n\t'
 DIRNAME=$(dirname "$0")
 
 
-pdflatex ${DIRNAME}/../slides/monoids.tex
+${DIRNAME}/clean.sh
+${DIRNAME}/build.sh
