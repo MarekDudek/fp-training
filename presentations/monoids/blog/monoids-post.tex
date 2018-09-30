@@ -85,30 +85,54 @@
         max(max(a, b), c) &= (a \max b) \max c 
     \end{align*}
 
+    Minimum and maximum don't have neutral element. 
+    We could say that $-\infty$ and $+\infty$ play this role. 
+    But they aren't real numbers, they don't belong to a set on which we defined our operator.
 
     \subsection{Monoid examples}
 
     \subsubsection{Addition and multiplication of numbers}
 
     \begin{align*}
-        (a + b) + c &= a + (b + c) && \text{addition is associative} \\
-        (a * b) * c &= a * (b * c) && \text{multiplication is associative} 
+        (a + b) + c &= a + (b + c) \\
+        (a * b) * c &= a * (b * c)
     \end{align*}
     \begin{align*}
-        0 + a = a = a + 0  && \text{neutral element is zero} \\
-        1 * a = a = a * 1  && \text{neutral element is one} 
+        0 + a = a \\
+        1 * a = a  
     \end{align*}
 
-\newpage
-\section{Random notes}
-\subsection{List of Semigroups and Monoids}
+    \subsubsection{Logical disjunction and conjunction}
 
-\begin{itemize}
-    \item addition of numbers
-    \item multiplication of numbers
-    \item appending lists
-    \item min and max of numbers
-\end{itemize}
+    \begin{align*}
+        (a \vee   b) \vee   c &= a \vee   (b \vee   c) \\
+        (a \wedge b) \wedge c &= a \wedge (b \wedge c)
+    \end{align*}
+    \begin{align*}
+        false \vee   a = a \\
+        true  \wedge a = a 
+    \end{align*}
 
+    \subsubsection{Union and intersection of sets}
+
+    \begin{align*}
+        (a \cup b) \cup c &= a \cup (b \cup c) \\
+        (a \cap b) \cap c &= a \cap (b \cap c)
+    \end{align*}
+    \begin{align*}
+        \emptyset \cup a = a \\
+        \Omega    \cap a = a 
+    \end{align*}
+
+
+    \subsubsection{Addition and multiplication of matrices}
+
+    \paragraph{}
+    By extension, addition and multiplication of matrices are also monoids
+    with all-$0$ matrix and identity matrices as corresponding neutral elements.
+    In this context we assume that addition is defined separately for matrices of the same dimentions 
+    and multiplication is defined separately for square matrices of the same size.
+
+    \subsubsection{Appending lists}
 
 \end{document}
