@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage{amsmath}
+
 \title{Monoids - best API ever!}
 \date{2010-09-30}
 \author{Marek Dudek}
@@ -15,6 +17,11 @@
 \newpage
 \pagenumbering{arabic}
 
+\section{Motivation}
+
+    \paragraph{}
+    Understanding these concepts is crucial for building distributed software systems that actually work as intended.
+
 \section{Definitions}
 
 \subsection{Semigroup}
@@ -22,17 +29,14 @@
     \paragraph{}
     Semigroup is an algebraic structure consisting of a set together with an associative binary operation.
 
-    \begin{equation}
+    \begin{equation*}
         (A, \diamond)
-    \end{equation}
+    \end{equation*}
 
-    \begin{equation}
-        a \diamond a = a
-    \end{equation}
-
-    \begin{equation}
-        x \diamond (y \diamond z) = (x \diamond y) \diamond z
-    \end{equation}
+    \begin{align*}
+        a \diamond a &= a \\
+        x \diamond (y \diamond z) &= (x \diamond y) \diamond z
+    \end{align*}
 
     \paragraph{}
     Symbol $\diamond$ is often pronounced \textit{append}.
@@ -42,13 +46,10 @@
     \paragraph{}
     Monoid is a semigroup with identity element.
 
-    \begin{equation}
-        a \diamond \emptyset = a
-    \end{equation}
-
-    \begin{equation}
-        \emptyset \diamond a = a
-    \end{equation}
+    \begin{align*}
+        a \diamond \emptyset &= a \\
+        \emptyset \diamond a &= a
+    \end{align*}
 
     \paragraph{}
     Symbol $\emptyset$ is often pronounced \textit{empty}.
@@ -58,19 +59,28 @@
     \paragraph{}
     Once we have $\diamond$ operator for two elements we can define concatenation function for multiple elements.
 
-    \begin{equation}
-        concat([a_1, a_2, ..., a_n]) = a_1 \diamond a_2 \diamond ... \diamond a_n
-    \end{equation}
-
-    \begin{equation}
-        concat(as) = fold_{right}(\diamond, \emptyset, as)
-    \end{equation}
+    \begin{align*}
+        concat([a_1, a_2, ..., a_n]) &= a_1 \diamond a_2 \diamond ... \diamond a_n \\
+        concat(l) &= fold_{right}(\diamond, \emptyset, l)
+    \end{align*}
 
     \paragraph{}
     For monoids concatenation of empty list is by definition equal to $\emptyset$.
     Semigroups don't have $\emptyset$ so this function is only defined for a non-empty list. 
 
 \section{Simple examples}
+
+    \subsection{Semigroup examples}
+
+    \subsubsection{Minimum and maximum of numbers}
+
+    \begin{align*}
+        min(min(a, b), c) &= min(a, min(b, c)) \\
+        max(max(a, b), c) &= max(a, max(b, c))
+    \end{align*}
+
+    We were talking about operators and we are used to $min$ and $max$ being functions. 
+    This is only syntax, semantically binary operators and functions of two arguments returning the same type are equivalent.
 
 
 \newpage
