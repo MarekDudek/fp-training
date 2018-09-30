@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static fp.SetHelper.set;
+import static java.util.Collections.emptySet;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -43,7 +44,7 @@ public final class MonoidExamples {
     @Test
     public void union_of_sets() {
         Stream<Set<Character>> ss = Stream.of(set('a', 'b', 'c'), set('b', 'c', 'd'), set('c', 'd', 'e'));
-        Set<Character> union = ss.reduce(set(), (a, b) -> Sets.union(a, b));
+        Set<Character> union = ss.reduce(emptySet(), (a, b) -> Sets.union(a, b));
         assertThat(union, is(set('a', 'b', 'c', 'd', 'e')));
     }
 
