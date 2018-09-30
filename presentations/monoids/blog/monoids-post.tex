@@ -127,18 +127,30 @@
     \subsubsection{Appending lists}
 
     \begin{align*}
-        (l_1 \oplus l_2) \oplus l_3 &= l_1 \oplus (l_2 \oplus l_3) \\
-        [] \oplus l = l \\
+        (l_1 \otimes l_2) \otimes l_3 &= l_1 \otimes (l_2 \otimes l_3) \\
+        [] \otimes l = l \\
     \end{align*}
 
     \subsubsection{Appending strings}
 
     \begin{align*}
-        (s_1 \oplus s_2) \oplus s_3 &= s_1 \oplus (s_2 \oplus s_3) \\
-        "" \oplus s = s \\
+        (s_1 \otimes s_2) \otimes s_3 &= s_1 \otimes (s_2 \otimes s_3) \\
+        "" \otimes s = s \\
     \end{align*}
 
     \paragraph{}
     This works because we can treat string as list of characters.
+
+    \section{Turning semigroup into monoid}
+
+    \section{More semigroups}
+
+    Appending of non-empty lists is a semigroup. By definition - since empty list is neutral element of monoid of appending lists.
+
+    \section{More monoids}
+
+    \subsection{Logic}
+
+    Exclusive disjunction and exclusive conjunction are also monoids.
 
 \end{document}
