@@ -29,13 +29,10 @@
     \paragraph{}
     Semigroup is an algebraic structure consisting of a set together with an associative binary operation.
 
-    \begin{equation*}
-        (A, \diamond)
-    \end{equation*}
-
     \begin{align*}
-        a \diamond a &= a \\
-        x \diamond (y \diamond z) &= (x \diamond y) \diamond z
+        &(A, \diamond) && \text{set and operator} \\
+        a \diamond a &= a && \text{binary operator} \\
+        x \diamond (y \diamond z) &= (x \diamond y) \diamond z && \text{associativity law}
     \end{align*}
 
     \paragraph{}
@@ -47,8 +44,8 @@
     Monoid is a semigroup with identity element.
 
     \begin{align*}
-        a \diamond \emptyset &= a \\
-        \emptyset \diamond a &= a
+        \emptyset \diamond a &= a && \text{left  identity} \\
+        a \diamond \emptyset &= a && \text{right identity} 
     \end{align*}
 
     \paragraph{}
@@ -80,7 +77,13 @@
     \end{align*}
 
     We were talking about operators and we are used to $min$ and $max$ being functions. 
-    This is only syntax, semantically binary operators and functions of two arguments returning the same type are equivalent.
+    This is only syntax, semantically binary operators and functions of two arguments returning the same type are equivalent:
+
+    \begin{align*}
+        min(min(a, b), c) &= (a \min b) \min c \\ 
+        max(max(a, b), c) &= (a \max b) \max c 
+    \end{align*}
+
 
 
 \newpage
