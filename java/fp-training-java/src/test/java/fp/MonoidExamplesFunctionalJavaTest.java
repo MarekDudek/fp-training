@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static fj.Monoid.*;
 import static fj.data.List.list;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public final class MonoidExamplesFunctionalJavaTest {
