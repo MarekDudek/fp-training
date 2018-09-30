@@ -124,15 +124,21 @@
         \Omega    \cap a = a 
     \end{align*}
 
+    \subsubsection{Appending lists}
 
-    \subsubsection{Addition and multiplication of matrices}
+    \begin{align*}
+        (l_1 \oplus l_2) \oplus l_3 &= l_1 \oplus (l_2 \oplus l_3) \\
+        [] \oplus l = l \\
+    \end{align*}
+
+    \subsubsection{Appending strings}
+
+    \begin{align*}
+        (s_1 \oplus s_2) \oplus s_3 &= s_1 \oplus (s_2 \oplus s_3) \\
+        "" \oplus s = s \\
+    \end{align*}
 
     \paragraph{}
-    By extension, addition and multiplication of matrices are also monoids
-    with all-$0$ matrix and identity matrices as corresponding neutral elements.
-    In this context we assume that addition is defined separately for matrices of the same dimentions 
-    and multiplication is defined separately for square matrices of the same size.
-
-    \subsubsection{Appending lists}
+    This works because we can treat string as list of characters.
 
 \end{document}
