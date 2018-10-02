@@ -13,12 +13,20 @@ main = hspec spec
 
 spec :: Spec
 spec = 
-    describe "Semigroups" $ 
+    describe "Semigroups" $ do
         describe "minimum of numbers" $ do
-            it "calculates minimum of two numbers" $
+            it "of two" $
                 Min 2 <> Min 5 `shouldBe` Min 2 
-            it "calculates minimum on non-empty list of numbers" $ 
-                let 
-                    l = Min 5 :| Min 1 : Min 4 : Min 2 : Min 3 : [] 
-                in 
-                    sconcat l `shouldBe` Min 1 
+            let l = Min 5 :| Min 1 : Min 4 : Min 2 : Min 3 : [] 
+            it "of non-empty list" $ 
+                sconcat l `shouldBe` Min 1 
+            it "of non-empty list, again" $ 
+                getMin (sconcat l) `shouldBe` 1 
+        describe "maximum of numbers" $ do
+            it "of two" $
+                Max 2 <> Max 5 `shouldBe` Max 5 
+            let l = Max 5 :| Max 1 : Max 4 : Max 2 : Max 3 : [] 
+            it "of non-empty list" $ 
+                sconcat l `shouldBe` Max 5
+            it "of non-empty list, again" $ 
+                getMax (sconcat l) `shouldBe` 5
