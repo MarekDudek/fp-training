@@ -13,7 +13,7 @@ import static fp.CollectionsHelper.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public final class MonoidExamplesJava8Test {
+public final class MonoidExamplesJ8Test {
 
     @Test
     public void addition_of_numbers() {

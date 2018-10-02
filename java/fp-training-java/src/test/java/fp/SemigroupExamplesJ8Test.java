@@ -14,7 +14,7 @@ import static fp.CollectionsHelper.set;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public final class SemigroupExamplesJava8Test {
+public final class SemigroupExamplesJ8Test {
 
     @Test
     public void minimum_of_numbers() {
@@ -56,6 +56,13 @@ public final class SemigroupExamplesJava8Test {
         Stream<Boolean> bs = Stream.of(true, false, true, false, true);
         Optional<Boolean> all = bs.reduce((a, b) -> a && b);
         assertThat(all, is(Optional.of(false)));
+    }
+
+    @Test
+    public void union_of_sets() {
+        Stream<Set<Character>> ss = Stream.of(set('a', 'b', 'c'), set('b', 'c', 'd'), set('c', 'd', 'e'));
+        Optional<Set<Character>> union = ss.reduce((a, b) -> Sets.union(a, b));
+        assertThat(union, is(Optional.of(set('a', 'b', 'c', 'd', 'e'))));
     }
 
     @Test

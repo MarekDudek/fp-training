@@ -12,7 +12,7 @@ import static fj.data.Set.set;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public final class MonoidExamplesFunctionalJavaTest {
+public final class MonoidExamplesFjTest {
 
     @Test
     public void addition_of_numbers() {
