@@ -1,5 +1,17 @@
 *.swp
+
+# LaTeX
+
 **/tmp/*
+
+# Java
+
 *.iml
 **/.idea/*
 **/java/**/target/*
+
+# Haskell
+
+haskell/*/.stack-work/
+haskell/*/fp-training-haskell.cabal
+
