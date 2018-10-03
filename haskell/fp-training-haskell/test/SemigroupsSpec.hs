@@ -3,7 +3,7 @@ module SemigroupsSpec where
 
 import Data.Semigroup
 import Data.List.NonEmpty
-import Data.Set
+import Data.Set hiding (toList)
 import Control.Monad
 
 import Test.Hspec
@@ -13,13 +13,11 @@ main :: IO ()
 main = hspec spec
 
 set = Data.Set.fromList
+list = Data.List.NonEmpty.toList
 
 
 ns = 1 :| [2..5]
 bs = False :| [True, False, True, False]
-ss = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
-ls = [1..3] :| [[4..6], [7..9]]
-cs = "abc" :| ["def", "ghi"]
 
 
 spec :: Spec
@@ -81,18 +79,39 @@ spec =
             let alls = fmap All bs
             it "of non-empty list" $ 
                 sconcat alls `shouldBe` All False
+
+
+        let nel = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
+        let list = toList nel
+
         describe "union of sets" $ do
             it "of two" $
                 set ['a'..'c'] <> set ['b'..'d'] `shouldBe` set ['a'..'d']
             it "of non-empty list" $
-                sconcat ss `shouldBe` set ['a'..'e']
+                sconcat nel  `shouldBe` set ['a'..'e']
+            it "of list" $
+                mconcat list `shouldBe` set ['a'..'e']
+
+
+        let nel = [1..3] :| [[4..6], [7..9]]
+        let list = toList nel
+
         describe "appending lists" $ do
             it "of two" $
                 [1..3] <> [4..6] `shouldBe` [1..6]
             it "of non-empty list" $
-                sconcat ls `shouldBe` [1..9]
+                sconcat nel  `shouldBe` [1..9]
+            it "of list" $
+                mconcat list `shouldBe` [1..9]
+
+
+        let nel  = "abc" :| ["def", "ghi"]
+        let list = toList nel 
+
         describe "string concatenation" $ do
             it "of two" $
                 "abc" <> "def" `shouldBe` "abcdef"
             it "of non-empty list" $
-                sconcat cs `shouldBe` "abcdefghi"
+                sconcat nel  `shouldBe` "abcdefghi"
+            it "of list" $
+                mconcat list `shouldBe` "abcdefghi"
