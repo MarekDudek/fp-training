@@ -1,8 +1,9 @@
-module SemigroupsSpec where
+module SemigroupsMonoidsSpec where
 
 
 import Data.Semigroup
 import Data.Monoid
+
 import Data.List.NonEmpty hiding (fromList)
 import Data.Set hiding (toList)
 import Control.Monad
@@ -118,44 +119,48 @@ spec =
                     All True <> All False `shouldBe` All False
 
                 it "of non-empty list" $ 
-                    let alls = fmap All nel
+                    let alls = fmap All nel in
                     sconcat alls `shouldBe` All False
 
                 it "of list" $ 
-                    let alls = fmap All list
+                    let alls = fmap All list in
                     mconcat alls `shouldBe` All False
 
-        let set = fromList
-        let nel = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
-        let list = toList nel
+        describe "on sets" $ do
 
-        describe "union of sets" $ do
+            let set = fromList
+            let nel = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
+            let list = toList nel
 
-            it "of two" $
-                set ['a'..'c'] <> set ['b'..'d'] `shouldBe` set ['a'..'d']
-            it "of non-empty list" $
-                sconcat nel  `shouldBe` set ['a'..'e']
-            it "of list" $
-                mconcat list `shouldBe` set ['a'..'e']
+            describe "union of sets" $ do
 
-        let nel = [1..3] :| [[4..6], [7..9]]
-        let list = toList nel
+                it "of two" $
+                    set ['a'..'c'] <> set ['b'..'d'] `shouldBe` set ['a'..'d']
+                it "of non-empty list" $
+                    sconcat nel  `shouldBe` set ['a'..'e']
+                it "of list" $
+                    mconcat list `shouldBe` set ['a'..'e']
 
-        describe "appending lists" $ do
-            it "of two" $
-                [1..3] <> [4..6] `shouldBe` [1..6]
-            it "of non-empty list" $
-                sconcat nel  `shouldBe` [1..9]
-            it "of list" $
-                mconcat list `shouldBe` [1..9]
+        describe "on lists" $ do
 
-        let nel  = "abc" :| ["def", "ghi"]
-        let list = toList nel 
+            let nel = [1..3] :| [[4..6], [7..9]]
+            let list = toList nel
 
-        describe "string concatenation" $ do
-            it "of two" $
-                "abc" <> "def" `shouldBe` "abcdef"
-            it "of non-empty list" $
-                sconcat nel  `shouldBe` "abcdefghi"
-            it "of list" $
-                mconcat list `shouldBe` "abcdefghi"
+            describe "appending lists" $ do
+                it "of two" $
+                    [1..3] <> [4..6] `shouldBe` [1..6]
+                it "of non-empty list" $
+                    sconcat nel  `shouldBe` [1..9]
+                it "of list" $
+                    mconcat list `shouldBe` [1..9]
+
+            let nel  = "abc" :| ["def", "ghi"]
+            let list = toList nel 
+
+            describe "string concatenation" $ do
+                it "of two" $
+                    "abc" <> "def" `shouldBe` "abcdef"
+                it "of non-empty list" $
+                    sconcat nel  `shouldBe` "abcdefghi"
+                it "of list" $
+                    mconcat list `shouldBe` "abcdefghi"
