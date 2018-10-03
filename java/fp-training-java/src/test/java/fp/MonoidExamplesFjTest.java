@@ -62,7 +62,7 @@ public final class MonoidExamplesFjTest {
     }
 
     @Test
-    public void appending_strings() {
+    public void string_concatenation() {
         List<String> ss = list("abc", "def", "ghi");
         String s = stringMonoid.sumRight(ss);
         assertThat(s, is("abcdefghi"));

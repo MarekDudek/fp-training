@@ -19,6 +19,7 @@ ns = 1 :| [2..5]
 bs = False :| [True, False, True, False]
 ss = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
 ls = [1..3] :| [[4..6], [7..9]]
+cs = "abc" :| ["def", "ghi"]
 
 
 spec :: Spec
@@ -90,5 +91,8 @@ spec =
                 [1..3] <> [4..6] `shouldBe` [1..6]
             it "of non-empty list" $
                 sconcat ls `shouldBe` [1..9]
-
-
+        describe "string concatenation" $ do
+            it "of two" $
+                "abc" <> "def" `shouldBe` "abcdef"
+            it "of non-empty list" $
+                sconcat cs `shouldBe` "abcdefghi"

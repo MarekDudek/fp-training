@@ -80,7 +80,7 @@ public final class SemigroupExamplesJ8Test {
     }
 
     @Test
-    public void appending_strings() {
+    public void string_concatenation() {
         Stream<String> ss = Stream.of("abc", "def", "ghi");
         Optional<String> s = ss.reduce((a, b) -> a + b);
         assertThat(s, is(Optional.of("abcdefghi")));

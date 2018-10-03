@@ -78,7 +78,7 @@ public final class SemigroupExamplesFjTest {
     }
 
     @Test
-    public void appending_strings() {
+    public void string_concatenation() {
         NonEmptyList<String> ss = nel("abc", "def", "ghi");
         String s = stringSemigroup.sumNel(ss);
         assertThat(s, is("abcdefghi"));

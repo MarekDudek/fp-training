@@ -65,7 +65,7 @@ public final class MonoidExamplesJ8Test {
     }
 
     @Test
-    public void appending_strings() {
+    public void string_concatenation() {
         Stream<String> ss = Stream.of("abc", "def", "ghi");
         String s = ss.reduce("", (a, b) -> a.concat(b));
         assertThat(s, is("abcdefghi"));
