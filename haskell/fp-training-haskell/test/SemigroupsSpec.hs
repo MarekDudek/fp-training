@@ -90,8 +90,8 @@ spec =
 
         describe "on booleans" $ do
 
-            let bs = False :| [True, False, True, False]
-            let list = toList bs
+            let nel  = False :| [True, False, True, False]
+            let list = toList nel
 
             describe "logical disjunction" $ do
 
@@ -101,10 +101,13 @@ spec =
                 it "of two" $
                     Any True <> Any False `shouldBe` Any True
 
-                let anys = fmap Any bs
-
                 it "of non-empty list" $ 
+                    let anys = fmap Any nel in
                     sconcat anys `shouldBe` Any True
+
+                it "of list" $ 
+                    let anys = fmap Any list in
+                    mconcat anys `shouldBe` Any True
 
             describe "logical conjunction" $ do
 
@@ -114,10 +117,13 @@ spec =
                 it "of two" $
                     All True <> All False `shouldBe` All False
 
-                let alls = fmap All bs
-
                 it "of non-empty list" $ 
+                    let alls = fmap All nel
                     sconcat alls `shouldBe` All False
+
+                it "of list" $ 
+                    let alls = fmap All list
+                    mconcat alls `shouldBe` All False
 
         let set = fromList
         let nel = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
