@@ -3,6 +3,7 @@ module SemigroupsSpec where
 
 import Data.Semigroup
 import Data.List.NonEmpty
+import Data.Set
 import Control.Monad
 
 import Test.Hspec
@@ -11,8 +12,14 @@ import Test.Hspec
 main :: IO ()
 main = hspec spec
 
-ns = 1 :| [2, 3, 4, 5]
+set = Data.Set.fromList
+
+
+ns = 1 :| [2..5]
 bs = False :| [True, False, True, False]
+ss = set ['a'..'c'] :| [set ['b'..'d'], set ['c'..'e']]
+ls = [1..3] :| [[4..6], [7..9]]
+
 
 spec :: Spec
 spec = 
@@ -73,3 +80,15 @@ spec =
             let alls = fmap All bs
             it "of non-empty list" $ 
                 sconcat alls `shouldBe` All False
+        describe "union of sets" $ do
+            it "of two" $
+                set ['a'..'c'] <> set ['b'..'d'] `shouldBe` set ['a'..'d']
+            it "of non-empty list" $
+                sconcat ss `shouldBe` set ['a'..'e']
+        describe "appending lists" $ do
+            it "of two" $
+                [1..3] <> [4..6] `shouldBe` [1..6]
+            it "of non-empty list" $
+                sconcat ls `shouldBe` [1..9]
+
+
