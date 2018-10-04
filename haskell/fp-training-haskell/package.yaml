@@ -35,6 +35,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - fp-training-haskell
+    - safe
 
 tests:
   fp-training-haskell-test:
@@ -49,3 +50,4 @@ tests:
     - hspec
     - semigroups
     - containers
+    - safe

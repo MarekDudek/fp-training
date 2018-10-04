@@ -18,6 +18,7 @@ spec :: Spec
 spec = 
 
     describe "More fun" $ do
+
         describe "Dual" $ do
 
             it "original" $ do
