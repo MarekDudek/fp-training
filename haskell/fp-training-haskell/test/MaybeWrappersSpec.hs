@@ -31,7 +31,7 @@ spec =
                 Nothing <> Nothing `shouldBe` (Nothing :: Maybe (Min Int))
 
             it "minimum of many empties" $ do
-                sconcat (Nothing :| [Nothing, Nothing]) `shouldBe` (Nothing :: Maybe (Min Int))
+                mconcat [Nothing, Nothing, Nothing] `shouldBe` (Nothing :: Maybe (Min Int))
 
         describe "Maybe of monoid" $ do
 
@@ -41,7 +41,10 @@ spec =
             it "wrapper of monoid with empty value" $ do
                 Nothing <> Just (Sum 5) `shouldBe` Just (Sum 5)
 
-            it "concaenation of wrappers" $ do
+            it "wrapper of monoid with empty value" $ do
+                Nothing <> Nothing `shouldBe` (Nothing :: Maybe (Sum Int))
+
+            it "concatenation of wrappers" $ do
                 mconcat [Just (Sum 2), Just (Sum 3), Just (Sum 4)] `shouldBe` Just (Sum 9)
 
 
