@@ -1,6 +1,7 @@
 package fp;
 
 import fj.Monoid;
+import fj.Semigroup;
 import fj.data.Option;
 import org.junit.Test;
 
@@ -37,5 +38,21 @@ public final class MaybeWrappers {
     public void minimum_of_many_empties() {
         Option<Integer> min = MinMonoid.sumRight(list(none(), none(), none()));
         assertThat(min, is(none()));
+    }
+
+    private static final Monoid<Option<Integer>> SumMonoidWrapper = Semigroup.intAdditionSemigroup.lift();
+
+    @Test
+    public void sum_of_two_numbers() {
+        Option<Integer> sum = SumMonoidWrapper.sum(some(3), some(5));
+        assertThat(sum, is(some(8)));
+    }
+
+    private static final Monoid<Option<Integer>> ProductMonoidWrapper = Semigroup.intMultiplicationSemigroup.lift();
+
+    @Test
+    public void product_of_two_numbers() {
+        Option<Integer> product = ProductMonoidWrapper.sum(some(3), some(5));
+        assertThat(product, is(some(15)));
     }
 }

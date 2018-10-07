@@ -31,10 +31,22 @@ public final class SemigroupExamplesFjTest {
     }
 
     @Test
+    public void addition_of_two_numbers() {
+        Integer sum = intAdditionSemigroup.sum(2, 5);
+        assertThat(sum, is(7));
+    }
+
+    @Test
     public void addition_of_numbers() {
         NonEmptyList<Integer> ns = nel(1, 2, 3, 4, 5);
         Integer sum = intAdditionSemigroup.sumNel(ns);
         assertThat(sum, is(15));
+    }
+
+    @Test
+    public void multiplication_of_two_numbers() {
+        Integer product = intMultiplicationSemigroup.sum(2, 5);
+        assertThat(product, is(10));
     }
 
     @Test
