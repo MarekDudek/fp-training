@@ -12,7 +12,7 @@ import static fj.data.Option.some;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public final class MaybeWrappers {
+public final class MaybeWrappersTest {
 
     private static final Monoid<Option<Integer>> MinMonoid = intMinimumSemigroup.lift();
 
