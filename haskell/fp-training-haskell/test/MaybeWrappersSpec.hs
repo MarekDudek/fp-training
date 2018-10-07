@@ -19,20 +19,6 @@ spec =
 
     describe "Maybe wrappers" $ do
 
-        describe "Maybe of semigroup" $ do
-
-            it "minimum of two numbers" $ do
-                Just (Min 2) <> Just (Min 5) `shouldBe` Just (Min 2)
-
-            it "minimum of one and empty" $ do
-                Just (Min 2) <> Nothing `shouldBe` Just (Min 2)
-
-            it "minimum of two empties" $ do
-                Nothing <> Nothing `shouldBe` (Nothing :: Maybe (Min Int))
-
-            it "minimum of many empties" $ do
-                mconcat [Nothing, Nothing, Nothing] `shouldBe` (Nothing :: Maybe (Min Int))
-
         describe "Maybe of monoid" $ do
 
             it "wrapper of monoid" $ do
@@ -46,6 +32,20 @@ spec =
 
             it "concatenation of wrappers" $ do
                 mconcat [Just (Sum 2), Just (Sum 3), Just (Sum 4)] `shouldBe` Just (Sum 9)
+
+        describe "Maybe of semigroup" $ do
+
+            it "minimum of two numbers" $ do
+                Just (Min 2) <> Just (Min 5) `shouldBe` Just (Min 2)
+
+            it "minimum of one and empty" $ do
+                Just (Min 2) <> Nothing `shouldBe` Just (Min 2)
+
+            it "minimum of two empties" $ do
+                Nothing <> Nothing `shouldBe` (Nothing :: Maybe (Min Int))
+
+            it "minimum of many empties" $ do
+                mconcat [Nothing, Nothing, Nothing] `shouldBe` (Nothing :: Maybe (Min Int))
 
 
         describe "simple safe parsing" $ do
