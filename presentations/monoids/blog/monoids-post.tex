@@ -1,6 +1,8 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{epigraph}
+\usepackage{csquotes}
 
 \title{Monoids - best API ever!}
 \date{2010-09-30}
@@ -19,9 +21,13 @@
 
 \section{Motivation}
 
+    \epigraph{The monoid is a humble algebraic structure, at first glance even downright boring. However, there’s much more to monoids than meets the eye.}
+
     \paragraph{}
     Understanding monoids is crucial for building distributed software systems that actually work as intended. 
     Monoids help us in thinking about concurrency and parallelism and thus about distribution.
+
+    
 
 \section{Definitions}
 
@@ -65,7 +71,11 @@
 
     \paragraph{}
     For monoids concatenation of empty list is by definition equal to $\emptyset$.
-    Semigroups don't have $\emptyset$ so this function is only defined for a non-empty list. 
+    Semigroups don't have $\emptyset$ so this function is only defined for a non-empty list.
+
+    \paragraph{}
+    Actually most of the time this concatenation of elements of $A$ is what we are really after. We often operate on multiple values of the same type. We just want to boil it down to operating on only two values and extrapolate it to operating on any number of them. This simplifies matter a lot.
+
 
 \section{Simple examples}
 
@@ -185,6 +195,30 @@
     \begin{equation}
         f :: (a_1, a_2, ..., a_n) -> (a_1, a_2, ..., a_m)
     \end{equation}
+
+    \section{Applications of semigroups and monoids}
+
+    \subsection{Foldable}
+
+    \subsection{Writer monad}
+
+    \subsection{Finger trees}
+
+    \subsection{Options and settings}
+
+    In Cabal, something like Maven for Haskell: 
+
+    \blockquote{Package databases are monoids. Configuration files are monoids. Command line flags and sets of command line flags are monoids. Package build information is a monoid}
+
+    In XMonad, windown manager implemented in Haskell:
+
+    \blockquote{xmonad configuration hooks are monoidal}
+
+    \subsection{Features}
+
+    In GenVoca, a compositional paradigm for defining programs of product lines:
+
+    \blockquote{model is a set of features with a composition operation}
 
 
 
