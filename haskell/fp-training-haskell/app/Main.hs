@@ -2,5 +2,12 @@ module Main where
 
 import Lib
 
+import Diagrams.Prelude
+import Diagrams.Backend.SVG.CmdLine
+
 main :: IO ()
-main = someFunc
+main = mainWith myCircle
+
+
+myCircle :: Diagram B
+myCircle = circle 1

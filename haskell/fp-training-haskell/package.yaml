@@ -36,6 +36,11 @@ executables:
     dependencies:
     - fp-training-haskell
     - safe
+    - diagrams
+    - diagrams-core
+    - diagrams-lib
+    - diagrams-contrib
+    - diagrams-svg
 
 tests:
   fp-training-haskell-test:
@@ -50,4 +55,5 @@ tests:
     - hspec
     - semigroups
     - containers
-    - safe
+    - safe 
+    - diagrams
