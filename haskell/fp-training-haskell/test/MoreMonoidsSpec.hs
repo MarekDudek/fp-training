@@ -9,19 +9,29 @@ main :: IO ()
 main = hspec spec
 
 
-newtype OnlyOne = OnlyOne { getOnlyOne :: Bool }
+-- Only one
+
+newtype OnlyOne = OnlyOne { getOnlyOne :: Bool } 
+    deriving (Eq, Show)
 
 instance Semigroup OnlyOne where
-    (OnlyOne p) <> (OnlyOne q) = OnlyOne ((p || q) && not(p && q))
+    OnlyOne p <> OnlyOne q = OnlyOne ((p || q) && not(p && q))
 
 instance Monoid OnlyOne where
     mempty = OnlyOne False
 
-instance Eq OnlyOne where
-    OnlyOne p == OnlyOne q = p == q
+-- All-or-None
 
-instance Show OnlyOne where
-    show (OnlyOne p) = show p
+newtype AllOrNone = AllOrNone { getAllOrNone :: Bool } 
+    deriving (Eq, Show)
+
+instance Semigroup AllOrNone where
+    AllOrNone p <> AllOrNone q = AllOrNone (p == q)
+
+instance Monoid AllOrNone where
+    mempty = AllOrNone True
+
+
 
 spec :: Spec
 spec = 
