@@ -6,13 +6,16 @@ import org.apache.commons.collections.ListUtils;
 
 import java.util.List;
 import java.util.Set;
+import java.util.SplittableRandom;
 
 public final class CollectionsHelper {
 
+    @SafeVarargs
     public static <A> Set<A> set(A... as) {
         return Sets.newHashSet(as);
     }
 
+    @SafeVarargs
     public static <A> List<A> list(A... as) {
         return Lists.newArrayList(as);
     }
@@ -27,4 +30,13 @@ public final class CollectionsHelper {
             'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
             's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     );
+
+    private static final SplittableRandom RANDOM = new SplittableRandom();
+
+    public static List<Integer> randomListOfIntegersOfLength(final Integer length) {
+        List<Integer> list = Lists.newArrayListWithExpectedSize(length);
+        for (int i = 0; i < length; i++)
+            list.add(RANDOM.nextInt());
+        return list;
+    }
 }
