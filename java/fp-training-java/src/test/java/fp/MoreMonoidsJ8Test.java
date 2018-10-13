@@ -17,7 +17,7 @@ import static org.quicktheories.generators.SourceDSL.integers;
 public final class MoreMonoidsJ8Test {
 
     @Test
-    public void exclusive_disjunction__property() {
+    public void exclusive_disjunction() {
         qt().
                 withExamples(10_000).
                 forAll(
@@ -38,7 +38,7 @@ public final class MoreMonoidsJ8Test {
     }
 
     @Test
-    public void exclusive_conjunction__property() {
+    public void exclusive_conjunction() {
         qt().
                 withExamples(10_000).
                 forAll(

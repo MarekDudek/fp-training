@@ -32,12 +32,13 @@ public final class MoreFunTest {
     public void dual_in_J8() {
         // given
         ImmutableList<String> list = of("abc", "def", "ghi");
-        BinaryOperator<String> monoid = (a, b) -> a.concat(b);
+        BinaryOperator<String> operator = (a, b) -> a.concat(b);
+        String empty = "";
         // then
-        assertThat(list.stream().reduce("", monoid), is("abcdefghi"));
+        assertThat(list.stream().reduce(empty, operator), is("abcdefghi"));
         // when
-        BinaryOperator<String> dual = FunctionalUtilities.flip(monoid);
+        BinaryOperator<String> dual = FunctionalUtilities.flip(operator);
         // then
-        assertThat(list.stream().reduce("", dual), is("ghidefabc"));
+        assertThat(list.stream().reduce(empty, dual), is("ghidefabc"));
     }
 }
