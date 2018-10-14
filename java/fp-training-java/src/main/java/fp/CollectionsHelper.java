@@ -5,8 +5,10 @@ import com.google.common.collect.Sets;
 import org.apache.commons.collections.ListUtils;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
-import java.util.SplittableRandom;
+
+import static java.util.stream.Stream.iterate;
 
 public final class CollectionsHelper {
 
@@ -31,12 +33,29 @@ public final class CollectionsHelper {
             's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     );
 
-    private static final SplittableRandom RANDOM = new SplittableRandom();
+    private static final Random RANDOM = new Random(0);
 
-    public static List<Integer> randomListOfIntegersOfLength(final Integer length) {
-        List<Integer> list = Lists.newArrayListWithExpectedSize(length);
-        for (int i = 0; i < length; i++)
-            list.add(RANDOM.nextInt());
+    public static List<Integer> randomIntegers(final Integer length) {
+        final Random generator = new Random(0);
+        final List<Integer> result = Lists.newArrayListWithExpectedSize(length);
+        iterate(0, i -> i + 1).limit(length).forEach(
+                i -> result.add(generator.nextInt())
+        );
+        return result;
+    }
+
+    private static final int LowestLetter = (int) 'a';
+    private static final int HighestLetter = (int) 'z';
+
+    public static List<String> randomCharacters(final int length) {
+        final Random generator = new Random(0);
+        final List<String> list = Lists.newArrayListWithExpectedSize(length);
+        iterate(0, i -> i + 1).limit(length).parallel().forEach(
+                i -> {
+                    int r = LowestLetter + generator.nextInt(HighestLetter - LowestLetter);
+                    list.add(Character.toString((char) r));
+                }
+        );
         return list;
     }
 }
