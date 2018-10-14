@@ -38,8 +38,12 @@ public final class CollectionsHelper {
     public static List<Integer> randomIntegers(final Integer length) {
         final Random generator = new Random(0);
         final List<Integer> result = Lists.newArrayListWithExpectedSize(length);
-        iterate(0, i -> i + 1).limit(length).forEach(
-                i -> result.add(generator.nextInt())
+        iterate(0, i -> i + 1).limit(length).parallel().forEach(
+                i -> {
+                    synchronized (result) {
+                        result.add(generator.nextInt());
+                    }
+                }
         );
         return result;
     }
