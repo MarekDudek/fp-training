@@ -2,6 +2,7 @@ package fp;
 
 import lombok.Builder;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static pl.touk.throwing.ThrowingFunction.unchecked;
 
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public final class ConcurrencyTest {
 
@@ -43,16 +45,16 @@ public final class ConcurrencyTest {
 
     private void concurrent() {
         // given
-        final ExecutorService executor = Executors.newFixedThreadPool(7);
+        final ExecutorService executor = Executors.newFixedThreadPool(8);
         final CompletionService<Integer> completion = new ExecutorCompletionService<>(executor);
-        // when
-        final int count = 7;
+        // when8
+        final int count = 8;
         final Stream<SumListOfIntegers> tasks =
                 iterate(0, i -> i + 1).limit(count).map(
                         i -> {
-                            int from = integers_count * i / count;
-                            int to = integers_count * (i + 1) / count;
-                            return new SumListOfIntegers(integers.subList(from, to));
+                            int f = integers_count * i++ / count;
+                            int t = integers_count * i++ / count;
+                            return new SumListOfIntegers(integers.subList(f, t));
                         }
                 );
         tasks.forEach(completion::submit);
