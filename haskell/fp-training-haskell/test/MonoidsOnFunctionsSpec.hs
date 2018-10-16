@@ -21,5 +21,8 @@ spec =
             let e2 = Endo (++ "!")
             let computation = e1 <> e2
 
-            it "wrapper of monoid" $ do
+            it "appending endomorphisms" $ do
                 appEndo computation "World" `shouldBe` "Hello, World!"
+
+            it "folding endomorphisms" $ do
+                appEndo (mconcat [e1, e2]) "World" `shouldBe` "Hello, World!"
