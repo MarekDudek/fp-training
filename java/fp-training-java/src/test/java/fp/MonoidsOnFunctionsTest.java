@@ -44,24 +44,27 @@ public final class MonoidsOnFunctionsTest {
         );
     }
 
-    private static final Function<Integer, String> id = __ -> "";
+    private static final String string__id = "";
+    private static final BinaryOperator<String> string__append = String::concat;
+
+    private static final Function<Integer, String> function_to_string__id = i -> string__id;
     private static final BinaryOperator<
             Function<Integer, String>
-            > append =
-            (f, g) -> i -> {
-                String fi = f.apply(i);
-                String gi = g.apply(i);
-                return fi.concat(gi);
-            };
+            > function_to_string__append =
+            (f, g) ->
+                    i ->
+                            string__append.apply(f.apply(i), g.apply(i));
 
     @Test
     public void monoid_for_function_to_monoid() {
         // given
-        final Function<Integer, String> toString = i -> Integer.toString(i);
+        final Function<Integer, String> to_str = i -> Integer.toString(i);
         final Function<Integer, String> repeat = i -> StringUtils.repeat("x", i);
         // when
-        final Function<Integer, String> computation1 = append.apply(toString, repeat);
-        final Function<Integer, String> computation2 = Stream.of(toString, repeat).reduce(id, append);
+        final Function<Integer, String> computation1 =
+                function_to_string__append.apply(to_str, repeat);
+        final Function<Integer, String> computation2 =
+                Stream.of(to_str, repeat).reduce(function_to_string__id, function_to_string__append);
         // then
         assertThat(
                 computation1.apply(3),
