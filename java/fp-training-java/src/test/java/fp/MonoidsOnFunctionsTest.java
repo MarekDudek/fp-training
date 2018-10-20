@@ -3,12 +3,17 @@ package fp;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
 import static java.util.function.UnaryOperator.identity;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -79,5 +84,42 @@ public final class MonoidsOnFunctionsTest {
                         "3xxx"
                 )
         );
+    }
+
+    private static final List<String> list__id = Collections.emptyList();
+    private static final BinaryOperator<List<String>> list__append = CollectionsHelper::concat;
+
+    private static final Function<Integer, List<String>> function_to_list__id = i -> list__id;
+    private static final BinaryOperator<Function<Integer, List<String>>> function_to_list__append =
+            (f, g) ->
+                    i ->
+                            list__append.apply(f.apply(i), g.apply(i));
+
+    @Test
+    public void another_monoid_for_function_to_monoid() {
+        // given
+        final Function<Integer, List<String>> f =
+                i ->
+                        Stream.iterate(1, j -> j + 1).limit(i).
+                                map(n -> Integer.toString(n)).
+                                collect(toList());
+        final Function<Integer, List<String>> g =
+                i ->
+                        Stream.iterate(1, j -> j + 1).limit(i).
+                                map(n -> Collections.nCopies(n, "x").stream().collect(joining(""))).
+                                collect(toList());
+        // when
+        final Function<Integer, List<String>> h =
+                Stream.of(f, g).reduce(function_to_list__id, function_to_list__append);
+        // then
+        assertThat(
+                h.apply(3),
+                is(
+                        asList(
+                                "1", "2", "3", "x", "xx", "xxx"
+                        )
+                )
+        );
+
     }
 }

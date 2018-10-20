@@ -2,6 +2,7 @@ module MonoidsOnFunctionsSpec where
 
 
 import Data.Semigroup
+import Data.List
 
 import Test.Hspec
 
@@ -26,3 +27,12 @@ spec =
 
             it "folding endomorphisms" $ do
                 appEndo (mconcat [e1, e2]) "World" `shouldBe` "Hello, World!"
+
+        describe "Monoid for function to monoid" $ do
+
+            let f i = show i
+            let g i = intercalate "" (take i (repeat "x"))
+            let h = f <> g
+
+            it "" $ do
+                h 3 `shouldBe` "3xxx"
