@@ -1,12 +1,9 @@
 package fp;
 
 import fj.Monoid;
-import fj.P;
-import fj.P2;
 import fj.Semigroup;
 import fj.data.List;
 import fj.data.Option;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static fj.Semigroup.intMinimumSemigroup;
@@ -47,7 +44,6 @@ public final class MaybeWrappersTest {
     private static final Monoid<Option<Integer>> SumMonoidWrapper = Semigroup.intAdditionSemigroup.lift();
 
     @Test
-    @Ignore
     public void sum_of_two_numbers() {
         Option<Integer> sum = SumMonoidWrapper.sum(some(3), some(5));
         assertThat(sum, is(some(8)));
@@ -56,7 +52,6 @@ public final class MaybeWrappersTest {
     private static final Monoid<Option<Integer>> ProductMonoidWrapper = Semigroup.intMultiplicationSemigroup.lift();
 
     @Test
-    @Ignore
     public void product_of_two_numbers() {
         Option<Integer> product = ProductMonoidWrapper.sum(some(3), some(5));
         assertThat(product, is(some(15)));

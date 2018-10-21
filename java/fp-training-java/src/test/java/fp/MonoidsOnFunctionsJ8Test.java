@@ -1,5 +1,6 @@
 package fp;
 
+import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public final class MonoidsOnFunctionsTest {
+public final class MonoidsOnFunctionsJ8Test {
 
     @Test
     public void monoid_for_endomorphisms() {
@@ -87,7 +88,7 @@ public final class MonoidsOnFunctionsTest {
     }
 
     private static final List<String> list__id = Collections.emptyList();
-    private static final BinaryOperator<List<String>> list__append = CollectionsHelper::concat;
+    private static final BinaryOperator<List<String>> list__append = ListUtils::union;
 
     private static final Function<Integer, List<String>> function_to_list__id = i -> list__id;
     private static final BinaryOperator<Function<Integer, List<String>>> function_to_list__append =
