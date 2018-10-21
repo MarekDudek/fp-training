@@ -1,5 +1,11 @@
 module WriterMonadSpec where
 
+import Data.Monoid
+import Data.Foldable
+import Control.Monad.Writer.Lazy
+import Control.Monad.State
+
+import MonadWriterTutorial
 
 import Test.Hspec
 
@@ -13,5 +19,9 @@ spec =
 
     describe "Writer monad" $ do
 
-        it "pending" $ do
-            pending
+        it "Factorial for 0" $ do
+            runWriter (fact1 0) `shouldBe` (1, "")
+
+
+
+

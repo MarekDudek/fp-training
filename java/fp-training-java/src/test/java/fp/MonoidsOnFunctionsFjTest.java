@@ -11,6 +11,15 @@ import static org.junit.Assert.assertThat;
 
 public final class MonoidsOnFunctionsFjTest {
 
+
+    @Test
+    public void monoid_for_function_to_endomorphisms() {
+        // given
+        final F<String, String> a = s -> "Hello, ".concat(s);
+        final F<String, String> b = s -> s.concat("!");
+
+    }
+
     private final static Monoid<String> string_monoid = Monoid.stringMonoid;
     private final static Monoid<F<Integer, String>> function_to_string_monoid = Monoid.functionMonoid(string_monoid);
 

@@ -24,6 +24,8 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies: 
+      - mtl
 
 executables:
   fp-training-haskell-exe:
@@ -41,6 +43,7 @@ executables:
     - diagrams-lib
     - diagrams-contrib
     - diagrams-svg
+    - mtl
 
 tests:
   fp-training-haskell-test:
@@ -58,3 +61,4 @@ tests:
     - safe 
     - diagrams
     - AC-Boolean
+    - mtl
