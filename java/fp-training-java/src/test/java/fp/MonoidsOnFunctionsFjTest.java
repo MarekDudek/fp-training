@@ -18,6 +18,7 @@ public final class MonoidsOnFunctionsFjTest {
         final F<String, String> a = s -> "Hello, ".concat(s);
         final F<String, String> b = s -> s.concat("!");
 
+        // TODO: provide example
     }
 
     private final static Monoid<String> string_monoid = Monoid.stringMonoid;
