@@ -1,8 +1,11 @@
 package fp.symmetric.unique;
 
 import fj.Ord;
-import fj.data.List;
 import fj.data.Set;
+
+import java.util.Iterator;
+
+import static org.apache.commons.lang3.BooleanUtils.isFalse;
 
 public enum UniqueMonoid {
 
@@ -13,16 +16,17 @@ public enum UniqueMonoid {
     }
 
     public static <A> boolean allUnique(Iterable<A> elements, Ord<A> ord) {
-        return allUnique(Set.empty(ord), List.iterableList(elements));
+        return allUnique(Set.empty(ord), elements.iterator());
     }
 
-    private static <A> boolean allUnique(Set<A> soFar, List<A> rest) {
-        if (rest.isEmpty())
+    private static <A> boolean allUnique(Set<A> soFar, Iterator<A> rest) {
+        if (isFalse(rest.hasNext()))
             return true;
-        if (soFar.member(rest.head()))
+        A next = rest.next();
+        if (soFar.member(next))
             return false;
         else
-            return allUnique(soFar.insert(rest.head()), rest.tail());
+            return allUnique(soFar.insert(next), rest);
     }
 
     public static <A> Unique<A> empty(final Ord<A> ord) {
